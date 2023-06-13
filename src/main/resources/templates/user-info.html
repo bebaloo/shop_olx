@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OLX</title>
+</head>
+<body>
+<h1>OLX</h1>
+<h4>All products from author: <span th:text="${user.name}"></span> </h4>
+
+<tr th:each="product :${products}">
+    <div>
+        <b><p th:text="${product.title} + ' ' + ${product.price} + ' ' + UAH."></b>
+        <p><a th:href="@{/product/{id}(id=${product.id})}">More...</a></p>
+
+    </div>
+</tr>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OLX</title>
+</head>
+<body>
+<h1>OLX</h1>
+<h4>Product information</h4>
+
+<tr th:each="img :${imgs}">
+    <div>
+        <img th:src="@{/images/{id}(id=${img.id})}" height="60px"/><br><br>
+    </div>
+<tr/>
+
+<b>Name: </b> <b th:text="${product.title}"></b><br><br>
+<b>Description: </b> <b th:text="${product.description}"></b><br><br>
+<b>Price: </b> <b th:text="${product.price}"></b><br><br>
+<b>City: </b> <b th:text="${product.city}"></b><br><br>
+<b>Author: </b> <a th:href="@{/user/{user}(user=${product.user.id})}"> <b th:text="${product.user.name}"></b></a><br><br>
+<b>Phone number: </b> <b th:text="${product.user.phoneNumber}"></b><br><br>
+</form>
+</body>
+</html>

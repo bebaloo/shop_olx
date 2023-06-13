@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OLX</title>
+</head>
+<body>
+<h1>OLX</h1>
+<h4>Registration</h4>
+<form action="/registration" method="post">
+    User name: <input type="text" name="name"><br><br>
+    Email: <input type="email" name="email"><br><br>
+    Phone number: <input type="text" name="phoneNumber"><br><br>
+    Password: <input type="password" name="password">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    <input type="submit" value="Sign up">
+</form>
+<tr th:if="${errorMessage}">
+    <h2 style="color: red" th:text="${errorMessage}"></h2>
+</tr>
+</body>
+</html>

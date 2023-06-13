@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OLX</title>
+</head>
+<body>
+<h1>OLX</h1>
+<h4>Authorisation</h4>
+<form action="/login" method="post">
+    Email: <input type="email" name="username"><br><br>
+    Password: <input type="password" name="password"><br><br>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    <input type="submit" value="Sign in">
+</form>
+<a href="/registration">Sign up</a>
+</body>
+</html>

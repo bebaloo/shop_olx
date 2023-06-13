@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>OLX</title>
+</head>
+<body>
+<h1>Products </h1><hr>
+<div th:if="${user.email == null}">
+    <a href="/login">Sign in</a>
+</div>
+<hr>
+<div th:if="${user.email != null}">
+    <h3>User name <i th:text="${user.name}"></i></h3>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" value="Log out">
+    </form>
+</div>
+
+<th:block th:if="${user.isAdmin}">
+    <a th:href="@{/admin}">Admin Panel</a>
+</th:block>
+<form action="/" method="get">
+    Search product by title <input type="text" name="title"><br>
+    <input type="submit" value="Search">
+</form>
+<tr th:each="product :${products}">
+    <div>
+        <b><p th:text="${product.title} + ' ' + ${product.price} + ' ' + UAH."></b>
+        <p><a th:href="@{/product/{id}(id=${product.id})}">More...</a></p>
+
+    </div>
+</tr>
+<div th:if="${products.isEmpty}">
+    <h4>No any product</h4>
+</div>
+<hr>
+<tr>
+    <div th:if="${user.email != null}">
+        <h3>Create new Product</h3>
+        <form action="product/create" method="post" enctype="multipart/form-data">
+            Name: <input type="text" name="title"><br><br>
+            Description: <input type="text" name="description"><br><br>
+            Price: <input type="number" name="price"><br><br>
+            City: <input type="text" name="city"><br><br>
+            First image: <input type="file" name="file1"><br><br>
+            Second image: <input type="file" name="file2"><br><br>
+            Third image: <input type="file" name="file3"><br><br>
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <input type="submit" value="Add product">
+        </form>
+    </div>
+</tr>
+</body>
+</html>
